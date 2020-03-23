@@ -1,9 +1,9 @@
 const express = require("express");
 const app = express();
 const compression = require("compression");
+const cookieSession = require("cookie-session");
 const csurf = require("csurf");
 const secrets = require("./utils/secrets.json");
-const cookieSession = require("cookie-session");
 const s3 = require("./s3.js");
 const { s3Url } = require("./config.json");
 
@@ -55,12 +55,19 @@ app.use(
 
 app.use(express.json());
 
-const cookieSessionMiddleware = cookieSession({
-    secret: secrets["cookieSessionSecret"],
-    maxAge: 1000 * 60 * 60 * 24 * 90
-});
+app.use(
+    cookieSession({
+        secret: secrets["cookieSessionSecret"],
+        maxAge: 1000 * 60 * 60 * 24 * 7 * 6
+    })
+);
 
 app.use(csurf());
+
+app.use(function(req, res, next) {
+    res.locals.csrfToken = req.csrfToken();
+    next();
+});
 
 app.use(function(req, res, next) {
     res.set("x-frame-option", "deny");
@@ -79,9 +86,56 @@ if (process.env.NODE_ENV != "production") {
     app.use("/bundle.js", (req, res) => res.sendFile(`${__dirname}/bundle.js`));
 }
 
-app.get("*", function(req, res) {
-    res.sendFile(__dirname + "/index.html");
+////////////////////////////////////////////////////////////////////////////////
+///////////////// post route for upload ////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+// multer stuff and then the function that's defined in s3.js
+app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
+    // console.log("input: ", req.body);
+    // console.log("req.session.userid: ", req.session.userID);
+    let userid = req.session.userID;
+    let url = s3Url + req.file.filename;
+    // console.log(chalk.blue.bgRed("URL: "));
+    // console.log("url: ", url);
+    // if (req.file) {
+    //     db.insertImageIntoDB(url, userid)
+    //         .then(({ rows }) => {
+    //             // console.log("image was inserted");
+    //             // console.log("rows: ", rows);
+    //             res.json(rows[0]);
+    //         })
+    //         .catch(err => {
+    //             console.log("err insert failed", err);
+    //         });
+    // } else {
+    //     res.json({
+    //         success: false
+    //     });
+    // }
 });
+////////////////////////////////////////////////////////////////////////////////
+///////////////// post route for upload ////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+app.get("/welcome", function(req, res) {
+    if (req.session.captcha) {
+        res.redirect("/upload");
+    } else {
+        res.sendFile(__dirname + "/index.html");
+    }
+});
+
+app.get("*", function(req, res) {
+    if (!req.session.captcha) {
+        res.redirect("/welcome");
+    } else {
+        res.sendFile(__dirname + "/index.html");
+    }
+});
+
+// app.get("*", function(req, res) {
+//     res.sendFile(__dirname + "/index.html");
+// });
 
 app.listen(8080, function() {
     console.log("I'm listening.");

@@ -1,23 +1,21 @@
 * {
-    background-color: red;
+    background-color: royalblue;
+    /* background-image: linear-gradient(
+        to right,
+        #eea2a2 0%,
+        #bbc1bf 19%,
+        #57c6e1 42%,
+        #b49fda 79%,
+        #7ac5d8 100%
+    ); */
     color: black;
     box-sizing: border-box;
     margin: 0;
     font-family: "Roboto", sans-serif;
 }
 
-div {
-    background-color: red;
-    color: black;
-    box-sizing: border-box;
-    margin: 0;
-    font-family: "Roboto", sans-serif;
-}
-
-main {
-    background-color: red;
-    color: black;
-    box-sizing: border-box;
-    margin: 0;
-    font-family: "Roboto", sans-serif;
+#title {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
