@@ -3,6 +3,7 @@ import Uploader from "./uploader.js";
 import { BrowserRouter, Route } from "react-router-dom";
 import Captcha from "./captcha.js";
 import axios from "./axios.js";
+import logo from './logo.png';
 
 export default class Welcome extends React.Component {
     constructor() {
@@ -38,7 +39,7 @@ export default class Welcome extends React.Component {
                 <div id="title-container">
                     <h2>Spleet up your audio files!</h2>
                     <h1>
-                        <img src="/logo.png" />
+                        <img src={logo}/>
                     </h1>
                     <h3>
                         A powerful tool for musicians and music-lovers alike
