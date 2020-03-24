@@ -14,8 +14,18 @@
     font-family: "Roboto", sans-serif;
 }
 
-#title {
+#title > img {
+    width: 1000px;
+    overflow: hidden;
+    object-fit: cover;
+    margin-top: 50px;
+}
+
+#title-container {
+    padding-top: 50px;
     display: flex;
-    align-items: center;
     justify-content: space-around;
+    align-items: center;
+    height: 400px;
+    flex-direction: column;
 }
