@@ -8,6 +8,6 @@ ReactDOM.render(
 
 function HelloWorld() {
     return (
-        <div>Hello, World! dhjfdjhdjfhjdfhjhjh</div>
+        <div>Hello, World!</div>
     );
 }
