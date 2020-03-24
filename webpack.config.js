@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 
-const conf = {
+module.exports = {
     entry: ["@babel/polyfill", __dirname + '/src/start.js'],
     output: {
         path: __dirname,
@@ -23,23 +23,5 @@ const conf = {
                 }
             }
         ]
-    }
+    },
 };
-
-if (require.main == module) {
-    webpack(conf, function(err, info) {
-        if (err) {
-            console.log(err);
-        }
-        if (info && info.compilation.errors.length) {
-            console.log(info.compilation.errors);
-        }
-    });
-} else {
-    module.exports = require('webpack-dev-middleware')(webpack(conf), {
-        watchOptions: {
-            aggregateTimeout: 300
-        },
-        publicPath: '/'
-    });
-}
