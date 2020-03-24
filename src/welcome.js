@@ -3,15 +3,15 @@ import Uploader from "./uploader.js";
 import { BrowserRouter, Route } from "react-router-dom";
 import Captcha from "./captcha.js";
 import axios from "./axios.js";
-import { Link } from "react-router-dom";
 
-export default class Welcome extends React.component {
+export default class Welcome extends React.Component {
     constructor() {
         super();
         this.state = {
             whatevs: true
         };
         this.submitUpload = this.submitUpload.bind(this);
+        // this.captcha = this.captcha.bind(this);
     }
     submitUpload(file) {
         // e.preventDefault();
@@ -43,9 +43,8 @@ export default class Welcome extends React.component {
                     <h3>
                         A powerful tool for musicians and music-lovers alike
                     </h3>
-                    <a href="/uploader">Proceed to the upload page</a>
                     <BrowserRouter>
-                        <Route exact path="/" component={Captcha} />
+                        <Route exact path="/captcha" component={Captcha} />
                         <Route
                             exact
                             path="/uploader"
@@ -63,6 +62,7 @@ export default class Welcome extends React.component {
                             )}
                         />
                     </BrowserRouter>
+                    <a href="/uploader">Proceed to the upload page</a>
                 </div>
             </div>
         );

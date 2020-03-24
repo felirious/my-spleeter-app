@@ -90,7 +90,7 @@ if (process.env.NODE_ENV != "production") {
 ///////////////// post route for upload ////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 // multer stuff and then the function that's defined in s3.js
-app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
+app.post("/uploader", uploader.single("file"), s3.upload, (req, res) => {
     // console.log("input: ", req.body);
     // console.log("req.session.userid: ", req.session.userID);
     let userid = req.session.userID;
@@ -119,12 +119,13 @@ app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
 
 app.get("/welcome", function(req, res) {
     if (req.session.captcha) {
-        res.redirect("/upload");
+        res.redirect("/");
     } else {
         res.sendFile(__dirname + "/index.html");
     }
 });
 
+//////// DON'T TOUCH ///////////////////////////////////////////////////////////
 app.get("*", function(req, res) {
     if (!req.session.captcha) {
         res.redirect("/welcome");
@@ -132,10 +133,7 @@ app.get("*", function(req, res) {
         res.sendFile(__dirname + "/index.html");
     }
 });
-
-// app.get("*", function(req, res) {
-//     res.sendFile(__dirname + "/index.html");
-// });
+//////// DON'T TOUCH ///////////////////////////////////////////////////////////
 
 app.listen(8080, function() {
     console.log("I'm listening.");

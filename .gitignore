@@ -3,3 +3,7 @@ node_modules
 secrets.json
 bundle.js
 index.html
+output
+pretrained_models
+uploads
+spleeter
