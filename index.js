@@ -117,18 +117,14 @@ app.post("/uploader", uploader.single("file"), s3.upload, (req, res) => {
 ///////////////// post route for upload ////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-app.get("/welcome", function(req, res) {
-    if (req.session.captcha) {
-        res.redirect("/");
-    } else {
-        res.sendFile(__dirname + "/index.html");
-    }
-});
+// more routes here
+
+// more routes here
 
 //////// DON'T TOUCH ///////////////////////////////////////////////////////////
 app.get("*", function(req, res) {
     if (!req.session.captcha) {
-        res.redirect("/welcome");
+        res.redirect("/");
     } else {
         res.sendFile(__dirname + "/index.html");
     }

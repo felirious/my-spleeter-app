@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Welcome from "./welcome.js";
-import './styles.css';
+import "./styles.css";
 
 let component;
 
-if (location.pathname === "/welcome") {
+if (location.pathname === "/") {
     //render upload page
     component = <Welcome />;
 } else {
