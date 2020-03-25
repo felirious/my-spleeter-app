@@ -1,7 +1,5 @@
 import React from "react";
 import Uploader from "./uploader.js";
-import { BrowserRouter, Route } from "react-router-dom";
-import Captcha from "./captcha.js";
 import axios from "./axios.js";
 import logo from "./logo.png";
 
@@ -12,17 +10,17 @@ export default class Welcome extends React.Component {
             whatevs: true
         };
         this.submitUpload = this.submitUpload.bind(this);
-        // this.captcha = this.captcha.bind(this);
+        this.captcha = this.captcha.bind(this);
     }
     submitUpload(file) {
-        // e.preventDefault();
+        console.log("upload is happening");
         var formData = new FormData();
         formData.append("file", file);
         axios
             .post("/upload", formData)
             .then(resp => {
                 console.log("stuff just happened");
-                console.log("new profile pic URL: ", resp.data.profile_pic);
+                console.log("resp.data: ", resp.data);
                 console.log("state before set: ", this.state);
                 // this.setState({
                 //     profile_pic: resp.data.profile_pic,
@@ -37,6 +35,10 @@ export default class Welcome extends React.Component {
         e.preventDefault();
         console.log("button was clicked");
         console.log("e.target: ", e.target);
+        console.log("this.state: ", this.state);
+        this.setState({
+            captcha: true
+        });
     }
     render() {
         return (
@@ -49,25 +51,6 @@ export default class Welcome extends React.Component {
                     <h3>
                         A powerful tool for musicians and music-lovers alike
                     </h3>
-                    <BrowserRouter>
-                        <Route exact path="/captcha" component={Captcha} />
-                        <Route
-                            exact
-                            path="/uploader"
-                            render={() => (
-                                <Uploader
-                                    handleChange={e => {
-                                        e.preventDefault();
-                                        console.log(
-                                            "handleChange is happening"
-                                        );
-                                        console.log(e.target.files);
-                                    }}
-                                    submitUpload={this.submitUpload}
-                                />
-                            )}
-                        />
-                    </BrowserRouter>
                 </div>
                 {!this.state.captcha && (
                     <div id="captcha">
@@ -91,6 +74,9 @@ export default class Welcome extends React.Component {
                             YES
                         </button>
                     </div>
+                )}
+                {this.state.captcha && (
+                    <Uploader submitUpload={this.submitUpload} />
                 )}
             </div>
         );

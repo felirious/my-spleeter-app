@@ -90,7 +90,7 @@ if (process.env.NODE_ENV != "production") {
 ///////////////// post route for upload ////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 // multer stuff and then the function that's defined in s3.js
-app.post("/uploader", uploader.single("file"), s3.upload, (req, res) => {
+app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
     // console.log("input: ", req.body);
     // console.log("req.session.userid: ", req.session.userID);
     let userid = req.session.userID;

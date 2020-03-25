@@ -50,5 +50,13 @@ input {
 button {
     background-color: silver;
     width: 50px;
-    border-radius: 20px;
+    border-radius: 5px;
+}
+
+#uploader {
+    margin-left: 200px;
+}
+
+.upload-btn {
+    width: 100px;
 }
