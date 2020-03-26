@@ -7,6 +7,7 @@ const secrets = require("./utils/secrets.json");
 const s3 = require("./s3.js");
 const { s3Url } = require("./config.json");
 const db = require("./database.js");
+const { exec } = require("child_process");
 
 ////////////////////////////////////////////////
 ///// file upload boilerplate //////////////////
@@ -96,7 +97,7 @@ app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
     let url = s3Url + req.file.filename;
     console.log("url: ", url);
     if (req.file) {
-        db.addFile(url)
+        db.addFile(url, req.file.filename)
             .then(({ rows }) => {
                 console.log("file was inserted");
                 console.log("rows: ", rows);
@@ -118,6 +119,10 @@ app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
 ////////////////////////////////////////////////////////////////////////////////
 
 // more routes here
+
+// app.get("/twostems", req, res) {
+//
+// }
 
 // more routes here
 

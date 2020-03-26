@@ -10,6 +10,8 @@ export default class Welcome extends React.Component {
         };
         this.submitUpload = this.submitUpload.bind(this);
         this.captcha = this.captcha.bind(this);
+        this.twostems = this.twostems.bind(this);
+        this.fourstems = this.fourstems.bind(this);
     }
     submitUpload(file) {
         console.log("upload is happening");
@@ -36,6 +38,7 @@ export default class Welcome extends React.Component {
     twostems(e) {
         e.preventDefault();
         console.log("twostems");
+        axios.get("/twostems");
     }
     fourstems(e) {
         e.preventDefault();
