@@ -120,9 +120,17 @@ app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
 
 // more routes here
 
-// app.get("/twostems", req, res) {
-//
-// }
+app.get("/twostems/:filename", async function(req, res) {
+    console.log("req.params: ", req.params);
+    let { filename } = req.params;
+    await exec(
+        `spleeter separate -i uploads/${filename} -p spleeter:2stems -o public/output`
+    );
+    res.json({
+        filename,
+        success: true
+    });
+});
 
 // more routes here
 

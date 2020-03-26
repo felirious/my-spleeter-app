@@ -26,6 +26,7 @@ export default class Welcome extends React.Component {
                 console.log("state before set: ", this.state);
                 this.setState({
                     original_file: resp.data.rows[0].file,
+                    original_filename: resp.data.rows[0].filename,
                     captcha: false,
                     player: true
                 });
@@ -38,7 +39,21 @@ export default class Welcome extends React.Component {
     twostems(e) {
         e.preventDefault();
         console.log("twostems");
-        axios.get("/twostems");
+        console.log("original_filename:", this.state.original_filename);
+        axios
+            .get("/twostems/" + this.state.original_filename)
+            .then(response => {
+                if (response.data.success) {
+                    this.setState({
+                        twostem_file_accompaniment: `/output/${response.data.filename}/accompaniment.wav`,
+                        twostem_file_vocals: `/output/${response.data.filename}/vocals.wav`,
+                        twostem: true
+                    });
+                }
+            })
+            .catch(err => {
+                console.log("err: ", err);
+            });
     }
     fourstems(e) {
         e.preventDefault();
