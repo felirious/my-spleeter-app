@@ -121,13 +121,14 @@ app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
 // more routes here
 
 app.get("/twostems/:filename", async function(req, res) {
-    console.log("req.params: ", req.params);
+    // console.log("req.params: ", req.params);
     let { filename } = req.params;
     await exec(
         `spleeter separate -i uploads/${filename} -p spleeter:2stems -o public/output`
     );
+    let directory = filename.slice(0, -4);
     res.json({
-        filename,
+        directory,
         success: true
     });
 });

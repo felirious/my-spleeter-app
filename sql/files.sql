@@ -4,6 +4,5 @@ CREATE TABLE files (
 	id SERIAL PRIMARY KEY UNIQUE,
 	file VARCHAR,
 	filename VARCHAR,
-	directory_name VARCHAR,
 	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

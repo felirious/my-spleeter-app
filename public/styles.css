@@ -66,3 +66,9 @@ button {
     width: 70px;
     margin: 30px;
 }
+
+#twostem-container {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 35px;
+}

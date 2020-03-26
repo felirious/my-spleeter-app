@@ -45,12 +45,13 @@ export default class Welcome extends React.Component {
             .get("/twostems/" + this.state.original_filename)
             .then(response => {
                 if (response.data.success) {
+                    console.log("directory: ", response.data.directory);
                     this.setState({
-                        twostem_file_accompaniment: `/output/${response.data.filename}/accompaniment.wav`,
-                        twostem_file_vocals: `/output/${response.data.filename}/vocals.wav`,
+                        twostem_file_accompaniment: `./output/${response.data.directory}/accompaniment.wav`,
+                        twostem_file_vocals: `./output/${response.data.directory}/vocals.wav`,
                         twostem: true,
                         player: false,
-                        captcha: true
+                        captcha: false
                     });
                 }
             })
@@ -106,7 +107,7 @@ export default class Welcome extends React.Component {
                         </button>
                     </div>
                 )}
-                {this.state.captcha && (
+                {this.state.captcha == true && (
                     <Uploader
                         submitUpload={this.submitUpload}
                         original_file={this.original_file}
