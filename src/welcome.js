@@ -1,6 +1,7 @@
 import React from "react";
 import Uploader from "./uploader.js";
 import axios from "./axios.js";
+import Twostem from "./twostem.js";
 
 export default class Welcome extends React.Component {
     constructor() {
@@ -47,7 +48,9 @@ export default class Welcome extends React.Component {
                     this.setState({
                         twostem_file_accompaniment: `/output/${response.data.filename}/accompaniment.wav`,
                         twostem_file_vocals: `/output/${response.data.filename}/vocals.wav`,
-                        twostem: true
+                        twostem: true,
+                        player: false,
+                        captcha: true
                     });
                 }
             })
@@ -147,6 +150,12 @@ export default class Welcome extends React.Component {
                             </button>
                         </div>
                     </div>
+                )}
+                {this.state.twostem && (
+                    <Twostem
+                        vocals={this.state.twostem_file_vocals}
+                        accompaniment={this.state.twostem_file_accompaniment}
+                    />
                 )}
             </div>
         );
