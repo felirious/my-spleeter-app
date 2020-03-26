@@ -42,7 +42,7 @@ exports.upload = (req, res, next) => {
             console.log("file upload successful!");
             next();
             // if you wanna delete the local copy of the file you've just uploaded
-            fs.unlink(path, () => {});
+            // fs.unlink(path, () => {});
         })
         .catch(err => {
             console.log("err in put-object / file-upload", err);

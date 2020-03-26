@@ -16,6 +16,7 @@ export default class Welcome extends React.Component {
         console.log("upload is happening");
         var formData = new FormData();
         formData.append("file", file);
+        console.log("formData: ", formData);
         axios
             .post("/upload", formData)
             .then(resp => {

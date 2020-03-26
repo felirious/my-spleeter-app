@@ -26,23 +26,21 @@ export default class Uploader extends React.Component {
                 )}
                 <h3>Please select an audio file to upload.</h3>
                 <br />
-                <form method="post" encType="multipart/form-data">
-                    <div className="upload-btn-wrapper">
-                        <input
-                            onChange={e => this.handleChange(e)}
-                            type="file"
-                            name="file"
-                            accept="audio/*"
-                        />
-                        <button
-                            onClick={this.props.submitUpload(this.state.file)}
-                            type="submit"
-                            className="upload-btn"
-                        >
-                            UPLOAD
-                        </button>
-                    </div>
-                </form>
+                <div className="upload-btn-wrapper">
+                    <input
+                        onChange={e => this.handleChange(e)}
+                        type="file"
+                        name="file"
+                        accept="audio/*"
+                    />
+                    <button
+                        onClick={this.props.submitUpload(this.state.file)}
+                        type="submit"
+                        className="upload-btn"
+                    >
+                        UPLOAD
+                    </button>
+                </div>
             </div>
         );
     }

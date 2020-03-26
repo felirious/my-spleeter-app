@@ -6,6 +6,7 @@ const csurf = require("csurf");
 const secrets = require("./utils/secrets.json");
 const s3 = require("./s3.js");
 const { s3Url } = require("./config.json");
+const db = require("./database.js");
 
 ////////////////////////////////////////////////
 ///// file upload boilerplate //////////////////
@@ -91,27 +92,24 @@ if (process.env.NODE_ENV != "production") {
 ////////////////////////////////////////////////////////////////////////////////
 // multer stuff and then the function that's defined in s3.js
 app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
-    // console.log("input: ", req.body);
-    // console.log("req.session.userid: ", req.session.userID);
-    let userid = req.session.userID;
+    console.log("input: ", req.body);
     let url = s3Url + req.file.filename;
-    // console.log(chalk.blue.bgRed("URL: "));
-    // console.log("url: ", url);
-    // if (req.file) {
-    //     db.insertImageIntoDB(url, userid)
-    //         .then(({ rows }) => {
-    //             // console.log("image was inserted");
-    //             // console.log("rows: ", rows);
-    //             res.json(rows[0]);
-    //         })
-    //         .catch(err => {
-    //             console.log("err insert failed", err);
-    //         });
-    // } else {
-    //     res.json({
-    //         success: false
-    //     });
-    // }
+    console.log("url: ", url);
+    if (req.file) {
+        db.addFile(url)
+            .then(({ rows }) => {
+                console.log("file was inserted");
+                console.log("rows: ", rows);
+                // res.json(rows[0]);
+            })
+            .catch(err => {
+                console.log("err insert failed", err);
+            });
+    } else {
+        res.json({
+            success: false
+        });
+    }
 });
 ////////////////////////////////////////////////////////////////////////////////
 ///////////////// post route for upload ////////////////////////////////////////
