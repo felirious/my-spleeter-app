@@ -34,7 +34,7 @@ export default class Uploader extends React.Component {
                         accept="audio/*"
                     />
                     <button
-                        onClick={this.props.submitUpload(this.state.file)}
+                        onClick={() => this.props.submitUpload(this.state.file)}
                         type="submit"
                         className="upload-btn"
                     >

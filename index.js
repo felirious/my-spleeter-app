@@ -100,7 +100,9 @@ app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
             .then(({ rows }) => {
                 console.log("file was inserted");
                 console.log("rows: ", rows);
-                // res.json(rows[0]);
+                res.json({
+                    pizza: true
+                });
             })
             .catch(err => {
                 console.log("err insert failed", err);
