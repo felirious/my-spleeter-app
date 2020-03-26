@@ -101,7 +101,7 @@ app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
                 console.log("file was inserted");
                 console.log("rows: ", rows);
                 res.json({
-                    pizza: true
+                    rows
                 });
             })
             .catch(err => {
@@ -123,11 +123,7 @@ app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
 
 //////// DON'T TOUCH ///////////////////////////////////////////////////////////
 app.get("*", function(req, res) {
-    if (!req.session.captcha) {
-        res.redirect("/");
-    } else {
-        res.sendFile(__dirname + "/index.html");
-    }
+    res.sendFile(__dirname + "/index.html");
 });
 //////// DON'T TOUCH ///////////////////////////////////////////////////////////
 

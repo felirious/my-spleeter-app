@@ -22,14 +22,24 @@ export default class Welcome extends React.Component {
                 console.log("stuff just happened");
                 console.log("resp.data: ", resp.data);
                 console.log("state before set: ", this.state);
-                // this.setState({
-                //     profile_pic: resp.data.profile_pic,
-                //     uploader: false
-                // });
+                this.setState({
+                    original_file: resp.data.rows[0].file,
+                    captcha: false,
+                    player: true
+                });
+                console.log("state after set: ", this.state);
             })
             .catch(err => {
                 console.log("err in POST /upload: ", err);
             });
+    }
+    twostems(e) {
+        e.preventDefault();
+        console.log("twostems");
+    }
+    fourstems(e) {
+        e.preventDefault();
+        console.log("fourstems");
     }
     captcha(e) {
         e.preventDefault();
@@ -52,7 +62,7 @@ export default class Welcome extends React.Component {
                         A powerful tool for musicians and music-lovers alike
                     </h3>
                 </div>
-                {!this.state.captcha && (
+                {!this.state.captcha && !this.state.player && (
                     <div id="captcha">
                         <h3>Please check and click to proceed:</h3>
                         <input
@@ -76,7 +86,49 @@ export default class Welcome extends React.Component {
                     </div>
                 )}
                 {this.state.captcha && (
-                    <Uploader submitUpload={this.submitUpload} />
+                    <Uploader
+                        submitUpload={this.submitUpload}
+                        original_file={this.original_file}
+                    />
+                )}
+                {this.state.player && (
+                    <div id="player">
+                        <h3>Your original file:</h3>
+                        <br />
+                        <br />
+                        <audio controls src={this.state.original_file}></audio>
+                        <br />
+                        <br />
+                        <h4>Choose a split option:</h4>
+                        <p>
+                            <strong>2 tracks</strong> will give you a vocals
+                            track and an accompaniment track.
+                        </p>
+                        <p>
+                            <strong>4 tracks</strong> will give you a vocals
+                            track, one track each for bass and drums, and one
+                            track for all the other instruments combined.
+                        </p>
+                        <br />
+                        <div id="buttons">
+                            <button
+                                className="stem"
+                                onClick={this.twostems}
+                                type="button"
+                                name="2stem"
+                            >
+                                2 tracks
+                            </button>
+                            <button
+                                className="stem"
+                                onClick={this.fourstems}
+                                type="button"
+                                name="4stem"
+                            >
+                                4 tracks
+                            </button>
+                        </div>
+                    </div>
                 )}
             </div>
         );

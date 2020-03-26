@@ -1,13 +1,5 @@
 * {
     background-color: royalblue;
-    /* background-image: linear-gradient(
-        to right,
-        #eea2a2 0%,
-        #bbc1bf 19%,
-        #57c6e1 42%,
-        #b49fda 79%,
-        #7ac5d8 100%
-    ); */
     color: black;
     box-sizing: border-box;
     margin: 0;
@@ -59,4 +51,18 @@ button {
 
 .upload-btn {
     width: 100px;
+}
+
+#player {
+    margin-left: 100px;
+}
+
+#buttons {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.stem {
+    width: 70px;
+    margin: 30px;
 }

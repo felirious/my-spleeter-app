@@ -41,6 +41,9 @@ export default class Uploader extends React.Component {
                         UPLOAD
                     </button>
                 </div>
+                <br />
+                <br />
+                <br />
             </div>
         );
     }
