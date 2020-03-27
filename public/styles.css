@@ -81,4 +81,9 @@ button {
     margin-left: 35px;
     margin-top: 15px;
     margin-right: 350px;
+    align-items: center;
+}
+
+#fourstem-element {
+    margin: 20px;
 }

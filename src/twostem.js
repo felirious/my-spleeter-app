@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useRef } from "react";
 
 export default function Twostem({ vocals, accompaniment }) {
+    const elemRef = useRef();
     console.log("vocals: ", vocals);
+    console.log("elemRef.current: ", elemRef.current);
     if (vocals && accompaniment) {
         return (
             <div id="twostem-container">
@@ -10,6 +12,7 @@ export default function Twostem({ vocals, accompaniment }) {
                     <br />
                     <br />
                     <audio
+                        ref={elemRef}
                         type="audio/wav"
                         key={vocals}
                         controls
@@ -29,6 +32,7 @@ export default function Twostem({ vocals, accompaniment }) {
                     <br />
                     <br />
                     <audio
+                        ref={elemRef}
                         type="audio/wav"
                         controls
                         key={accompaniment}
@@ -43,6 +47,12 @@ export default function Twostem({ vocals, accompaniment }) {
                         />
                     </audio>
                 </div>
+
+                <br />
+                <br />
+                <a href="/">Upload and spleet another file</a>
+                <br />
+                <br />
             </div>
         );
     } else {

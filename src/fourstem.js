@@ -4,7 +4,7 @@ export default function Fourstem({ vocals, bass, drums, other }) {
     if (vocals && bass && drums && other) {
         return (
             <div id="fourstem-container">
-                <div>
+                <div id="fourstem-element">
                     <h3>Vocals</h3>
                     <br />
                     <br />
@@ -48,6 +48,11 @@ export default function Fourstem({ vocals, bass, drums, other }) {
                         src={other}
                     ></audio>
                 </div>
+                <br />
+                <br />
+                <a href="/">Upload and spleet another file</a>
+                <br />
+                <br />
             </div>
         );
     } else {
