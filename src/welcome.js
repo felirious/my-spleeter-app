@@ -141,7 +141,7 @@ export default class Welcome extends React.Component {
                     this.state.playerVisible &&
                     !this.state.playerInvisible &&
                     !this.state.twostemVisible &&
-                    !this.state.fourstemVisible(
+                    !this.state.fourstemVisible && (
                         <div id="player">
                             <h3>Your original file:</h3>
                             <br />
