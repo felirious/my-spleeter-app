@@ -133,6 +133,19 @@ app.get("/twostems/:filename", async function(req, res) {
     });
 });
 
+app.get("/fourstems/:filename", async function(req, res) {
+    // console.log("req.params: ", req.params);
+    let { filename } = req.params;
+    await exec(
+        `spleeter separate -i uploads/${filename} -p spleeter:4stems -o public/output`
+    );
+    let directory = filename.slice(0, -4);
+    res.json({
+        directory,
+        success: true
+    });
+});
+
 // more routes here
 
 //////// DON'T TOUCH ///////////////////////////////////////////////////////////

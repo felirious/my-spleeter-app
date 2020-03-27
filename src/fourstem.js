@@ -1,47 +1,52 @@
 import React from "react";
 
-export default function Twostem({ vocals, accompaniment }) {
-    console.log("vocals: ", vocals);
-    if (vocals && accompaniment) {
+export default function Fourstem({ vocals, bass, drums, other }) {
+    if (vocals && bass && drums && other) {
         return (
-            <div id="twostem-container">
+            <div id="fourstem-container">
                 <div>
                     <h3>Vocals</h3>
                     <br />
                     <br />
                     <audio
+                        controls
                         type="audio/wav"
                         key={vocals}
-                        controls
                         src={vocals}
                     ></audio>
+                </div>
+                <div>
+                    <h3>Bass</h3>
                     <br />
                     <br />
                     <audio
-                        type="audio/wav"
                         controls
-                        src="./output/Z3eOIRHhQqeJRd-dtoycmWkCkqr33C-6/vocals.wav"
+                        type="audio/wav"
+                        key={bass}
+                        src={bass}
                     ></audio>
                 </div>
-
                 <div>
-                    <h3>Accompaniment</h3>
+                    <h3>Drums</h3>
                     <br />
                     <br />
                     <audio
-                        type="audio/wav"
                         controls
-                        key={accompaniment}
-                        src={accompaniment}
+                        type="audio/wav"
+                        key={drums}
+                        src={drums}
                     ></audio>
+                </div>
+                <div>
+                    <h3>Other</h3>
                     <br />
                     <br />
-                    <audio controls>
-                        <source
-                            src="./output/Z3eOIRHhQqeJRd-dtoycmWkCkqr33C-6/accompaniment.wav"
-                            type="audio/wav"
-                        />
-                    </audio>
+                    <audio
+                        controls
+                        type="audio/wav"
+                        key={other}
+                        src={other}
+                    ></audio>
                 </div>
             </div>
         );
