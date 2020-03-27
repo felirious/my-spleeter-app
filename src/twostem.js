@@ -10,42 +10,24 @@ export default function Twostem({ vocals, accompaniment }) {
                 <div>
                     <h3>Vocals</h3>
                     <br />
-                    <br />
-                    <audio
-                        ref={elemRef}
-                        type="audio/wav"
-                        key={vocals}
-                        controls
-                        src={vocals}
-                    ></audio>
-                    <br />
-                    <br />
                     <audio
                         type="audio/wav"
                         controls
-                        src="./output/Z3eOIRHhQqeJRd-dtoycmWkCkqr33C-6/vocals.wav"
+                        src="./output/mr-mustard/vocals.wav"
                     ></audio>
+                    <br />
                 </div>
 
                 <div>
                     <h3>Accompaniment</h3>
                     <br />
-                    <br />
                     <audio
-                        ref={elemRef}
                         type="audio/wav"
                         controls
                         key={accompaniment}
-                        src={accompaniment}
+                        src="./output/mr-mustard/accompaniment.wav"
                     ></audio>
                     <br />
-                    <br />
-                    <audio controls>
-                        <source
-                            src="./output/Z3eOIRHhQqeJRd-dtoycmWkCkqr33C-6/accompaniment.wav"
-                            type="audio/wav"
-                        />
-                    </audio>
                 </div>
 
                 <br />

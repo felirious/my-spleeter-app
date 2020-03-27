@@ -14,6 +14,7 @@
 }
 
 #title-container {
+    margin-top: 35px;
     padding-top: 50px;
     display: flex;
     justify-content: space-around;
@@ -86,4 +87,16 @@ button {
 
 #fourstem-element {
     margin: 20px;
+}
+
+.description {
+    display: flex;
+    flex-direction: column;
+    align-items: space-around;
+    justify-content: center;
+    margin: 25px;
+}
+
+audio {
+    margin: 35px;
 }
