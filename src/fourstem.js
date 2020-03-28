@@ -13,7 +13,7 @@ export default function Fourstem({ vocals, bass, drums, other }) {
                             controls
                             type="audio/wav"
                             key={vocals}
-                            src="./output/mr-mustard/vocals.wav"
+                            src={vocals}
                         ></audio>
                     </div>
                     <div>
@@ -24,7 +24,7 @@ export default function Fourstem({ vocals, bass, drums, other }) {
                             controls
                             type="audio/wav"
                             key={bass}
-                            src="./output/mr-mustard/bass.wav"
+                            src={bass}
                         ></audio>
                     </div>
                     <div>
@@ -35,18 +35,14 @@ export default function Fourstem({ vocals, bass, drums, other }) {
                             controls
                             type="audio/wav"
                             key={drums}
-                            src="./output/mr-mustard/drums.wav"
+                            src={bass}
                         ></audio>
                     </div>
                     <div>
                         <h3>Other</h3>
                         <br />
                         <br />
-                        <audio
-                            controls
-                            type="audio/wav"
-                            src="./output/mr-mustard/other.wav"
-                        ></audio>
+                        <audio controls type="audio/wav" src={other}></audio>
                     </div>
                 </div>
                 <br />
