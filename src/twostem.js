@@ -1,10 +1,9 @@
-import React, { useRef } from "react";
+import React from "react";
 
-export default function Twostem({ vocals, accompaniment }) {
-    const elemRef = useRef();
+export default function Twostem({ vocals, accompaniment, directory }) {
     console.log("vocals: ", vocals);
-    console.log("elemRef.current: ", elemRef.current);
-    if (vocals && accompaniment) {
+    console.log("directory: ", directory);
+    if (directory && vocals && accompaniment) {
         return (
             <div id="twostem-container">
                 <div>
@@ -13,7 +12,8 @@ export default function Twostem({ vocals, accompaniment }) {
                     <audio
                         type="audio/wav"
                         controls
-                        src="./output/mr-mustard/vocals.wav"
+                        key={vocals}
+                        src={"./output/" + directory + "/vocals.wav"}
                     ></audio>
                     <br />
                 </div>
@@ -25,7 +25,7 @@ export default function Twostem({ vocals, accompaniment }) {
                         type="audio/wav"
                         controls
                         key={accompaniment}
-                        src="./output/mr-mustard/accompaniment.wav"
+                        src={"./output/" + directory + "/vocals.wav"}
                     ></audio>
                     <br />
                 </div>

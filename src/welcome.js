@@ -52,6 +52,7 @@ export default class Welcome extends React.Component {
                     this.setState({
                         twostem_file_accompaniment: `./output/${response.data.directory}/accompaniment.wav`,
                         twostem_file_vocals: `./output/${response.data.directory}/vocals.wav`,
+                        twostem_file_directory: response.data.directory,
                         twostemVisible: true,
                         playerInvisible: true
                     });
@@ -226,6 +227,7 @@ export default class Welcome extends React.Component {
                     <Twostem
                         vocals={this.state.twostem_file_vocals}
                         accompaniment={this.state.twostem_file_accompaniment}
+                        directory={this.state.twostem_file_directory}
                     />
                 )}
                 {this.state.fourstemVisible && (
