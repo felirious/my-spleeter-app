@@ -21,6 +21,7 @@
     align-items: center;
     height: 400px;
     flex-direction: column;
+    margin-bottom: 35px;
 }
 
 h3 {

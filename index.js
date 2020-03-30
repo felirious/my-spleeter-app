@@ -7,7 +7,8 @@ const secrets = require("./utils/secrets.json");
 const s3 = require("./s3.js");
 const { s3Url } = require("./config.json");
 const db = require("./database.js");
-const { exec } = require("child_process");
+const util = require("util");
+const exec = util.promisify(require("child_process").exec);
 
 ////////////////////////////////////////////////
 ///// file upload boilerplate //////////////////
@@ -123,9 +124,11 @@ app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
 app.get("/twostems/:filename", async function(req, res) {
     // console.log("req.params: ", req.params);
     let { filename } = req.params;
-    await exec(
+    const { stdout, stderr } = await exec(
         `spleeter separate -i uploads/${filename} -p spleeter:2stems -o public/output`
     );
+    console.log("stdout: ", stdout);
+    console.error("stderr: ", stderr);
     let directory = filename.slice(0, -4);
     res.json({
         directory,
@@ -136,9 +139,11 @@ app.get("/twostems/:filename", async function(req, res) {
 app.get("/fourstems/:filename", async function(req, res) {
     // console.log("req.params: ", req.params);
     let { filename } = req.params;
-    await exec(
+    const { stdout, stderr } = await exec(
         `spleeter separate -i uploads/${filename} -p spleeter:4stems -o public/output`
     );
+    console.log("stdout: ", stdout);
+    console.error("stderr: ", stderr);
     let directory = filename.slice(0, -4);
     res.json({
         directory,
