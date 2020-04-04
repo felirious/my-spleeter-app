@@ -25,7 +25,7 @@ export default function Twostem({ vocals, accompaniment, directory }) {
                         type="audio/wav"
                         controls
                         key={accompaniment}
-                        src={"./output/" + directory + "/vocals.wav"}
+                        src={"./output/" + directory + "/accompaniment.wav"}
                     ></audio>
                     <br />
                 </div>
