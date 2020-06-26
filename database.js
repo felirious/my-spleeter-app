@@ -1,6 +1,9 @@
 const spicedPg = require("spiced-pg");
 
-const db = spicedPg("postgres://postgres:postgres@localhost:5432/spleeter");
+const db = spicedPg(
+    process.env.DATABASE_URL ||
+        "postgres://postgres:postgres@localhost:5432/spleeter"
+);
 
 exports.addFile = function(url, filename) {
     return db.query(
